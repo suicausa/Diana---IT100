@@ -15,9 +15,10 @@ public class StoneMasonKarel extends SuperKarel {
 	public void run() {
 		
 		while(frontIsClear()) {
-			//check if column present at (1,1)
-			//if yes put column
-			//if no move on			
+			/*check if column present at (1,1)
+			  if yes put column
+			  if no move on
+			*/
 			colBuild();
 			
 			//build column on left
