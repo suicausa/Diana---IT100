@@ -30,6 +30,7 @@ public class StoneMasonKarel extends SuperKarel {
 				move();
 			}
 			turnLeft();
+			//since we know the pattern of columns we can use for loop
 			for (int i = 0; i < 3; i++) {
 				move();
 			}
