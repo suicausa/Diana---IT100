@@ -12,13 +12,33 @@ import stanford.karel.*;
 public class CheckerboardKarel extends SuperKarel {
 
 	public void run() {
-		while(frontIsClear()) {
-			checkRowOdd();
-			checkRowEven();
+		while(frontIsClear()){
+			if (facingEast()) {
+				makeRow();
+				if(leftIsClear()) {
+					checkRowOdd();
+				}
+			}
+			if (facingWest()) {
+				makeRow();
+				if(rightIsClear()) {
+					checkRowEven();
+				}
+			}
+		}
+		//check final position whether to place beeper (odd) or not (even)
+		if(frontIsBlocked()){
+			turnAround();
+			move();
+			turnAround();
+			if (noBeepersPresent()){
+				move();
+				putBeeper();
+			}
 		}
 	}
-	
-	public void checkRowOdd() {
+	//places beepers in a row at every other position
+	public void makeRow() {
 		while(frontIsClear()) {
 			putBeeper();
 			if(frontIsClear()){
@@ -28,51 +48,64 @@ public class CheckerboardKarel extends SuperKarel {
 				}
 			}
 		}
+	}
+	
+	
+	public void checkRowOdd() {
+		//if there is beeper in previous position then row is even because (1,1) has beeper
+		//if there is NO beeper in previous position then row is odd
 		turnAround();
 		move();
-		//even grid
-		if(beepersPresent()) {
-			turnRight();
-
-			if(frontIsClear()){
+		turnAround();
+		//check if row is even; if yes then move to next row
+		if (beepersPresent()){
+			move();
+			if(leftIsClear()){
+				turnLeft();
 				move();
-				turnRight();
-				move();
+				turnLeft();
 				putBeeper();
-				turnAround();
+				move();
 			}
 		}
-		//odd grid
-		if(noBeepersPresent()) {
-			turnAround();
+		//check if row is odd; if yes then adds a beeper before moving to next row
+		else if (noBeepersPresent()){
 			move();
 			putBeeper();
-			turnLeft();
-			if(frontIsClear()){
+			if(leftIsClear()){
+				turnLeft();
 				move();
 				turnLeft();
 			}
 		}
+		move();
 	}
 	public void checkRowEven() {
-		if(beepersPresent()) {
-			move();
-		}
+		turnAround();
 		move();
-		while(frontIsClear()) {
-			putBeeper();
-			if(frontIsClear()){
+		turnAround();
+		//check if row is even
+		if (beepersPresent()){
+			move();
+			if(rightIsClear()){
+				turnRight();
 				move();
-				if(frontIsClear()){
-					move();
-				}
+				turnRight();
+				putBeeper();
+				move();
 			}
 		}
-		turnRight();
-		if(frontIsClear()){
+		//check if row is odd
+		else if (noBeepersPresent()){
 			move();
-			turnRight();
+			putBeeper();
+			if(rightIsClear()){
+				turnRight();
+				move();
+				turnRight();
+			}
 		}
+		move();
 	}
 	
 }

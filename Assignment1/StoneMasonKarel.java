@@ -15,24 +15,23 @@ public class StoneMasonKarel extends SuperKarel {
 	public void run() {
 		
 		while(frontIsClear()) {
-			//check column at (1,1)
+			//check if column present at (1,1)
+			//if yes put column
+			//if no move on			
 			colBuild();
 			
 			//build column on left
 			colLeft();
 			
 			//travel to next column
-			turnRight();
-			while(frontIsClear()) {
-				move();
-			}
-			turnRight();
+			turnAround();
 			while(frontIsClear()) {
 				move();
 			}
 			turnLeft();
-			move();
-		
+			for (int i = 0; i < 3; i++) {
+				move();
+			}
 		}
 		//build last column
 		turnAround();
