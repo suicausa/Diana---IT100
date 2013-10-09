@@ -3,12 +3,7 @@
  * Name: 
  * Section Leader: 
  * ---------------------------
- * This draws the diagram for Program Hierarchy.
- * Each label's rectangle is defined by posx and posy as the top left corner of the GRect.
- * Variables i and j are the values for the center of the rectangle based on posx and posy.
- * Variables posA and posB is the bottom left position of the GLabel.
- * The connecting lines all start at the top lavel's bottom middle position
- * and connect to the child labels' top middle positions.
+ * This file is the starter file for the ProgramHierarchy problem.
  */
 
 import acm.graphics.*;
@@ -84,12 +79,7 @@ public class ProgramHierarchy extends GraphicsProgram {
 		add(labelVal3);
 
 		//draw connecting lines
-		GLine line1 = new GLine(i0,(j0+labelHeight/2),i1,(j1-labelHeight/2));
-		add(line1);//top label connects to bottom center label
-		GLine line2 = new GLine(i0,(j0+labelHeight/2),i2,(j2-labelHeight/2));
-		add(line2);//top label connects to bottom left label
-		GLine line3 = new GLine(i0,(j0+labelHeight/2),i3,(j3-labelHeight/2));
-		add(line3);//top label connects to bottom right label
+		
 	}
 }
 

@@ -85,11 +85,11 @@ public class ProgramHierarchy extends GraphicsProgram {
 
 		//draw connecting lines
 		GLine line1 = new GLine(i0,(j0+labelHeight/2),i1,(j1-labelHeight/2));
-		add(line1);//top label connects to bottom center label
+		add(line1);
 		GLine line2 = new GLine(i0,(j0+labelHeight/2),i2,(j2-labelHeight/2));
-		add(line2);//top label connects to bottom left label
+		add(line2);
 		GLine line3 = new GLine(i0,(j0+labelHeight/2),i3,(j3-labelHeight/2));
-		add(line3);//top label connects to bottom right label
+		add(line3);
 	}
 }
 
