@@ -36,7 +36,7 @@ public class Pyramid extends GraphicsProgram {
 			//counter value for number of bricks to output
 			int count = BRICKS_IN_BASE;
 			
-			//while the counter indicated number of bricks to output is not 0
+			//while the counter (number of bricks to output) is not 0
 			while (count > 0) {
 				for (int j = 0; j < count; j++) {
 					int x = posx + (j * BRICK_WIDTH);
