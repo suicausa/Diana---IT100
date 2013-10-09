@@ -79,7 +79,7 @@ public class ProgramHierarchy extends GraphicsProgram {
 		add(labelName3);
 
 		//draw connecting lines
-		
+
 	}
 }
 
