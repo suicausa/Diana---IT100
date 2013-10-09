@@ -44,9 +44,9 @@ public class Pyramid extends GraphicsProgram {
 					GRect sq = new GRect(x, y, BRICK_WIDTH, BRICK_HEIGHT);
 					add(sq);
 				}
-				posy -= BRICK_HEIGHT; //this positions brick output at the next level
-				posx += (BRICK_WIDTH/2); //this starts brick output half a brick to the right
-				count --; //this decreases the number of bricks per row by 1
+				posy -= BRICK_HEIGHT; //y position of brick output at the next level
+				posx += (BRICK_WIDTH/2); //x position of brick output at half a brick to the right
+				count --; //decrease the number of bricks per row by 1
 			}
 		}
 	}
