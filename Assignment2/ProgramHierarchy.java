@@ -1,7 +1,7 @@
 /*
  * File: ProgramHierarchy.java
- * Name: 
- * Section Leader: 
+ * Name: Diana
+ * With help from: Jianbin Ray
  * ---------------------------
  * This draws the diagram for Program Hierarchy.
  * Each label's rectangle is defined by posx and posy as the top left corner of the GRect.
