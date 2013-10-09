@@ -27,69 +27,56 @@ public class ProgramHierarchy extends GraphicsProgram {
 		int centerx = getWidth()/2;
 		int centery = getHeight()/2;
 
-		//center label
-		double posx1 = centerx - labelWidth/2;
-		double posy1 = centery;
-
-		GRect labelBox1 = new GRect(posx1, posy1, labelWidth,labelHeight);
-		add(labelBox1);//draws rectangle
-		GLabel labelVal1 = new GLabel("ConsoleProgram");
-		double i1 = (posx1 + labelWidth/2);
-		double j1 = (posy1 + labelHeight/2);
-		double posA1 = i1 - (labelVal1.getWidth()/2);
-		double posB1 = j1 + (labelVal1.getAscent()/2);
-		labelVal1.setLocation(posA1,posB1);
-		add(labelVal1);//prints text
-
-		//top label
+		//top parent label
 		double posx0 = centerx - labelWidth/2;
 		double posy0 = centery - 2*labelHeight;
+		makeLabel(posx0, posy0, "Program");
 
-		GRect labelBox0 = new GRect(posx0, posy0, labelWidth,labelHeight);
-		add(labelBox0);
-		GLabel labelVal0 = new GLabel("Program");
-		double i0 = (posx0 + labelWidth/2);
-		double j0 = (posy0 + labelHeight/2);
-		double posA0 = i0 - (labelVal0.getWidth()/2);
-		double posB0 = j0 + (labelVal0.getAscent()/2);
-		labelVal0.setLocation(posA0,posB0);
-		add(labelVal0);
-
-		//center label left
+		double posy = centery;//since all children have the same y position
+		//center child label
+		double posx1 = centerx - labelWidth/2;
+		
+		makeLabel(posx1, posy, "ConsoleProgram");
+		makeLine(posx1, posy, centerx, centery);
+		//left child label
 		double posx2 = centerx - 1.75*labelWidth;
-		double posy2 = centery;
-
-		GRect labelBox2 = new GRect(posx2, posy2, labelWidth,labelHeight);
-		add(labelBox2);
-		GLabel labelVal2 = new GLabel("GraphicsProgram");
-		double i2 = (posx2 + labelWidth/2);
-		double j2 = (posy2 + labelHeight/2);
-		double posA2 = i2 - (labelVal2.getWidth()/2);
-		double posB2 = j2 + (labelVal2.getAscent()/2);
-		labelVal2.setLocation(posA2,posB2);
-		add(labelVal2);
-
-		//center label right
+		
+		makeLabel(posx2, posy, "GraphicsProgram");
+		makeLine(posx2, posy, centerx, centery);
+		//right child label
 		double posx3 = centerx + .75*labelWidth;
-		double posy3 = centery;
+		
+		makeLabel(posx3, posy, "DialogProgram");
+		makeLine(posx3, posy, centerx, centery);
 
-		GRect labelBox3 = new GRect(posx3, posy3, labelWidth,labelHeight);
-		add(labelBox3);
-		GLabel labelVal3 = new GLabel("DialogProgram");
-		double i3 = (posx3 + labelWidth/2);
-		double j3 = (posy3 + labelHeight/2);
-		double posA3 = i3 - (labelVal3.getWidth()/2);
-		double posB3 = j3 + (labelVal3.getAscent()/2);
-		labelVal3.setLocation(posA3,posB3);
-		add(labelVal3);
-
-		//draw connecting lines
-		GLine line1 = new GLine(i0,(j0+labelHeight/2),i1,(j1-labelHeight/2));
-		add(line1);//top label connects to bottom center label
-		GLine line2 = new GLine(i0,(j0+labelHeight/2),i2,(j2-labelHeight/2));
-		add(line2);//top label connects to bottom left label
-		GLine line3 = new GLine(i0,(j0+labelHeight/2),i3,(j3-labelHeight/2));
-		add(line3);//top label connects to bottom right label
+	}
+	
+	private void makeLabel(double x, double y, String text){
+		//draws rectangle
+		GRect labelBox = new GRect(x, y, labelWidth,labelHeight);
+		add(labelBox);
+		//creates label
+		GLabel labelVal = new GLabel(text);
+		//gets center position of rectangle
+		double i = (x + labelWidth/2);
+		double j = (y + labelHeight/2);
+		//gets bottom left position to center label text
+		double posA = i - (labelVal.getWidth()/2);
+		double posB = j + (labelVal.getAscent()/2);
+		labelVal.setLocation(posA,posB);
+		//outputs label
+		add(labelVal);
+	}
+	
+	private void makeLine(double c, double d, double a, double b){
+		//defines starting x and y as bottom center of top label
+		double startx = a;
+		double starty = b - labelHeight;
+		//defines ending x and y as top center of children labels
+		double endx = (c + labelWidth/2);
+		double endy = d;
+		//draws the line
+		GLine line = new GLine(startx,starty,endx,endy);
+		add(line);
 	}
 }
-
