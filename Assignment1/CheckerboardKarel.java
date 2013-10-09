@@ -52,8 +52,9 @@ public class CheckerboardKarel extends SuperKarel {
 	
 	
 	public void checkRowOdd() {
-		//if there is beeper in previous position then row is even because (1,1) has beeper
-		//if there is NO beeper in previous position then row is odd
+		/*if there is beeper in previous position then row is even because (1,1) has beeper
+		  if there is NO beeper in previous position then row is odd
+		*/
 		turnAround();
 		move();
 		turnAround();

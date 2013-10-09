@@ -15,15 +15,22 @@ import stanford.karel.*;
 public class MidpointFindingKarel extends SuperKarel {
 
 	public void run(){
+		//marks first position
 		putBeeper();
+		
+		//put beeper at opposite end of the world
 		while(frontIsClear()) {
 			move();
 		}
 		putBeeper();
 		turnAround();
-
+		
+		//go back to find previous beeper
 		while(frontIsClear()) {
 			move();
+			/*if find beeper, pick it up, start one position over and mark with beeper.
+			  Loop is contained within to end walls of the world
+			*/
 			if(beepersPresent()){
 				pickBeeper();
 				turnAround();
@@ -32,6 +39,10 @@ public class MidpointFindingKarel extends SuperKarel {
 			}
 		}
 		turnAround();
+		
+		/*the midpoint has 2 beepers
+		  find beeper, pick it up and stop in position
+		*/
 		while(noBeepersPresent()) {
 			move();
 			if(beepersPresent()){
