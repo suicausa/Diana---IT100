@@ -6,7 +6,7 @@
  * This file generates a 2D pyramid of bricks in the center of the window.
  * With the constants of the brick dimensions (width and height), and the number of bricks in the base,
  * this program determines the bottom left point of the pyramid and begins piling bricks horizontally.
- * Once the base has been completed, it's position shifts up 1 brick height, and over half brick width
+ * Once the base has been completed, its position shifts up 1 brick height, and over half brick width
  * as the starting point of the second line of bricks.
  * The number of bricks per line decreases by one until there is only one brick, the peak of the pyramid.
  * At this point the program stops.
