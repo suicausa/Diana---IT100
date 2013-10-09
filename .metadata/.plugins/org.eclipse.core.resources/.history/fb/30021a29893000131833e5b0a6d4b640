@@ -33,7 +33,7 @@ public class ProgramHierarchy extends GraphicsProgram {
 		double j1 = (posy1 + labelHeight/2);
 		double posA1 = i1 - (labelVal1.getWidth()/2);
 		double posB1 = j1 + (labelVal1.getAscent()/2);
-		labelVal1.setLocation(posA1,posB1);
+		GLabel.setLocation(posA1,posB1);
 		add(labelVal1);//prints text
 
 		//top label
@@ -47,7 +47,7 @@ public class ProgramHierarchy extends GraphicsProgram {
 		double j0 = (posy0 + labelHeight/2);
 		double posA0 = i0 - (labelVal0.getWidth()/2);
 		double posB0 = j0 + (labelVal0.getAscent()/2);
-		labelVal0.setLocation(posA0,posB0);
+		GLabel.setLocation(posA0,posB0);
 		add(labelVal0);
 
 		//center label left

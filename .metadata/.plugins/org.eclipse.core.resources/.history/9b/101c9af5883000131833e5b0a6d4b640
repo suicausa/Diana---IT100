@@ -33,8 +33,8 @@ public class ProgramHierarchy extends GraphicsProgram {
 		double j1 = (posy1 + labelHeight/2);
 		double posA1 = i1 - (labelVal1.getWidth()/2);
 		double posB1 = j1 + (labelVal1.getAscent()/2);
-		labelVal1.setLocation(posA1,posB1);
-		add(labelVal1);//prints text
+		GLabel labelName1 = new GLabel("ConsoleProgram",posA1,posB1);
+		add(labelName1);//prints text
 
 		//top label
 		double posx0 = centerx - labelWidth/2;
@@ -47,8 +47,8 @@ public class ProgramHierarchy extends GraphicsProgram {
 		double j0 = (posy0 + labelHeight/2);
 		double posA0 = i0 - (labelVal0.getWidth()/2);
 		double posB0 = j0 + (labelVal0.getAscent()/2);
-		labelVal0.setLocation(posA0,posB0);
-		add(labelVal0);
+		GLabel labelName0 = new GLabel("Program",posA0,posB0);
+		add(labelName0);
 
 		//center label left
 		double posx2 = centerx - 1.75*labelWidth;
@@ -61,8 +61,8 @@ public class ProgramHierarchy extends GraphicsProgram {
 		double j2 = (posy2 + labelHeight/2);
 		double posA2 = i2 - (labelVal2.getWidth()/2);
 		double posB2 = j2 + (labelVal2.getAscent()/2);
-		labelVal2.setLocation(posA2,posB2);
-		add(labelVal2);
+		GLabel labelName2 = new GLabel("GraphicsProgram",posA2,posB2);
+		add(labelName2);
 
 		//center label right
 		double posx3 = centerx + .75*labelWidth;
@@ -75,8 +75,8 @@ public class ProgramHierarchy extends GraphicsProgram {
 		double j3 = (posy3 + labelHeight/2);
 		double posA3 = i3 - (labelVal3.getWidth()/2);
 		double posB3 = j3 + (labelVal3.getAscent()/2);
-		labelVal3.setLocation(posA3,posB3);
-		add(labelVal3);
+		GLabel labelName3 = new GLabel("DialogProgram",posA3,posB3);
+		add(labelName3);
 
 		//draw connecting lines
 		

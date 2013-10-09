@@ -24,19 +24,19 @@ public class ProgramHierarchy_test extends GraphicsProgram {
 	
 	private GLabel makeLabel(GLabel label) {
 		//center label
-		double posx = centerx - labelWidth/2;
+		double posx1 = centerx - labelWidth/2;
 		double posy = centery;
 		
-		GRect labelBox = new GRect(posx, posy, labelWidth,labelHeight);
+		GRect labelBox = new GRect(posx1, posy1, labelWidth,labelHeight);
 		add(labelBox);//draws rectangle
 		GLabel labelVal = label;
-		double i = (posx + labelWidth/2);
-		double j = (posy + labelHeight/2);
+		double i = (posx1 + labelWidth/2);
+		double j = (posy1 + labelHeight/2);
 		double posA = i - (labelVal.getWidth()/2);
 		double posB = j + (labelVal.getAscent()/2);
-		labelVal.setLocation(posA,posB);
-		add(labelVal);//prints text
-		return labelVal;
+		labelName1.setLocation(posA,posB);
+		add(labelName1);//prints text
+		return labelName1;
 	}
 	
 	public void run() {
