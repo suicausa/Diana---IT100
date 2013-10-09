@@ -32,20 +32,20 @@ public class ProgramHierarchy extends GraphicsProgram {
 		double posy0 = centery - 2*labelHeight;
 		makeLabel(posx0, posy0, "Program");
 
-		double posy = centery;//since all children have the same y position
 		//center child label
 		double posx1 = centerx - labelWidth/2;
-		
+		//posy defined one time since all children have the same y position
+		double posy = centery;
 		makeLabel(posx1, posy, "ConsoleProgram");
 		makeLine(posx1, posy, centerx, centery);
+		
 		//left child label
 		double posx2 = centerx - 1.75*labelWidth;
-		
 		makeLabel(posx2, posy, "GraphicsProgram");
 		makeLine(posx2, posy, centerx, centery);
+		
 		//right child label
 		double posx3 = centerx + .75*labelWidth;
-		
 		makeLabel(posx3, posy, "DialogProgram");
 		makeLine(posx3, posy, centerx, centery);
 
