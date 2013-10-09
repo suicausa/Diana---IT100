@@ -6,8 +6,8 @@
  * This draws the diagram for Program Hierarchy.
  * Each label's rectangle is defined by posx and posy as the top left corner of the GRect.
  * Variables i and j are the values for the center of the rectangle based on posx and posy.
- * Variables posA and posB is the bottom left position of the GLabel.
- * The connecting lines all start at the top lavel's bottom middle position
+ * Variables posA and posB define the bottom left position of the GLabel.
+ * The connecting lines all start at the top label's bottom middle position
  * and connect to the child labels' top middle positions.
  */
 
