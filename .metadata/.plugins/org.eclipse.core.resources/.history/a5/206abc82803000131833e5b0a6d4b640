@@ -1,0 +1,55 @@
+/*
+ * File: ProgramHierarchy.java
+ * Name: 
+ * Section Leader: 
+ * ---------------------------
+ * This file is the starter file for the ProgramHierarchy problem.
+ */
+
+import acm.graphics.*;
+import acm.program.*;
+import java.awt.*;
+
+public class ProgramHierarchy extends GraphicsProgram {
+	/** Width of label in pixels */
+	private static final int labelWidth = 120;
+
+	/** Height of label in pixels */
+	private static final int labelHeight = 30;
+	
+	public void run() {
+		//get window center position
+		int centerx = getWidth()/2;
+		int centery = getHeight()/2;
+		
+		//create program labels
+		//GLabel label2 = new GLabel("GraphicsProgram");
+
+		//GLabel label4 = new GLabel("DialogProgram");
+		
+		//center label
+		double posx1 = centerx - labelWidth/2;
+		double posy1 = centery;
+		GRect labelBox1 = new GRect(posx1, posy1, labelWidth,labelHeight);
+		add(labelBox1);//draws rectangle
+		GLabel labelVal1 = new GLabel("ConsoleProgram");
+		double posA1 = centerx - (labelVal1.getWidth()/2);
+		double posB1 = (centery + (labelHeight/2)) + (labelVal1.getAscent()/2);
+		GLabel labelName1 = new GLabel("ConsoleProgram",posA1,posB1);
+		add(labelName1);//prints text
+		
+		//top label
+		double posx0 = centerx - labelWidth/2;
+		double posy0 = centery - 2*labelHeight;
+		GRect labelBox0 = new GRect(posx0, posy0, labelWidth,labelHeight);
+		add(labelBox0);
+		
+		GLabel labelVal0 = new GLabel("Program");
+		double posA0 = (posx0 + labelWidth/2) - (labelVal0.getWidth()/2);
+		double posB0 = (posy + labelHeight/2) + (labelHeight/2)) + (labelVal0.getAscent()/2);
+		GLabel labelName0 = new GLabel("ConsoleProgram",posA0,posB0);
+		add(labelName0);
+
+	}
+}
+

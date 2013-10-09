@@ -1,0 +1,47 @@
+/*
+ * File: ProgramHierarchy.java
+ * Name: 
+ * Section Leader: 
+ * ---------------------------
+ * This file is the starter file for the ProgramHierarchy problem.
+ */
+
+import acm.graphics.*;
+import acm.program.*;
+import java.awt.*;
+
+public class ProgramHierarchy extends GraphicsProgram {
+	/** Width of label in pixels */
+	private static final int labelWidth = 30;
+
+	/** Height of label in pixels */
+	private static final int labelHeight = 12;
+	
+	public void run() {
+		//get window center position
+		int centerx = getWidth()/2;
+		int centery = getHeight()/2;
+		
+		//create program labels
+		//GLabel label1 = new GLabel("Program");
+		//GLabel label2 = new GLabel("GraphicsProgram");
+		//GLabel label4 = new GLabel("DialogProgram");
+		
+		//get dimensions of longest label
+		GLabel label0 = new GLabel("ConsoleProgram");
+		double rectWidth = label0.getWidth();
+		double rectHeight = label0.getAscent();
+		
+		double labelWidth = rectWidth + 30;
+		double labelHeight = rectHeight + 20;
+		double posx = centerx - rectWidth/2;
+		double posy = centery - rectHeight/2;
+		
+		GRect label = new GRect (posx,posy,labelWidth,labelHeight);
+		
+		println("rect width is:"+rectWidth);
+		println("rect height is:"+rectHeight);
+
+	}
+}
+
