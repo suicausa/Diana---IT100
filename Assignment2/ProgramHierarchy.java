@@ -9,6 +9,7 @@
  * Variables posA and posB define the bottom left position of the GLabel.
  * The connecting lines all start at the top label's bottom middle position
  * and connect to the child labels' top middle positions.
+ * The center child label's top center is the window's center position.
  */
 
 import acm.graphics.*;
