@@ -40,10 +40,10 @@ public class HangmanCanvas extends GCanvas {
 		
 		wordLabel = new GLabel(word, startX, startY);
 		wordLabel.setFont("Halvetica-24");
-        if (getElementAt(startX,startY) != null){
-        	remove(getElementAt(startX,startY));
-        }
-        add(wordLabel);
+		if (getElementAt(startX,startY) != null){
+			remove(getElementAt(startX,startY));
+		}
+		add(wordLabel);
 	}
 
 /**
@@ -62,26 +62,28 @@ public class HangmanCanvas extends GCanvas {
 		startY = centerY + 3*SCAFFOLD_HEIGHT/5;
 		str += ch;
 		GLabel charLabel = new GLabel(str, startX, startY);
-        add(charLabel);
+		add(charLabel);
 	}
 	
 	public void drawScaffold() {
 		centerX = getWidth()/2;
 		centerY = getHeight()/2;
+		//rope
 		startY = centerY - 2*SCAFFOLD_HEIGHT/3;
 		lastY = startY + ROPE_LENGTH;
 		GLine rope = new GLine(centerX, startY, centerX, lastY);
 		add(rope);
-		
+		//beam
 		startX = centerX - BEAM_LENGTH;
 		GLine beam = new GLine(startX, startY, centerX, startY);
 		add(beam);
-		
+		//sacffold
 		lastY = startY + SCAFFOLD_HEIGHT;
 		GLine scaffold = new GLine(startX, startY, startX, lastY);
 		add(scaffold);
 	}
 	public void drawMan(int count) {
+		//head
 		startX = centerX - HEAD_RADIUS;
 		startY = centerY - 2*SCAFFOLD_HEIGHT/3 + ROPE_LENGTH;
 		lastY = startY + 2*HEAD_RADIUS;
@@ -133,6 +135,7 @@ public class HangmanCanvas extends GCanvas {
 			case 6: add(leftFoot); count++;
 			break;
 			case 7: add(rightFoot); count++;
+			break;
 		}
 	}
 /* Constants for the simple version of the picture (in pixels) */
