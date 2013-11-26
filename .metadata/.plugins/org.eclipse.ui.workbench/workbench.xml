@@ -38,7 +38,7 @@
 </editorArea>
 <editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Breakout.java" partName="Breakout.java" path="/Users/dianachen/Diana---IT100/Assignment3/Breakout.java" title="Breakout.java" tooltip="Assignment3/Breakout.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Assignment3/Breakout.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2593" selectionTopPixel="794"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1141" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Target.java" partName="Target.java" path="/Users/dianachen/Diana---IT100/Assignment2/Target.java" title="Target.java" tooltip="Assignment2/Target.java" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/Assignment2/Target.java"/>
@@ -52,8 +52,8 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
 <expanded>
+<category IMemento.internal.id="Warnings (11 items)"/>
 <category IMemento.internal.id="Errors"/>
-<category IMemento.internal.id="Warnings (12 items)"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="84" org.eclipse.ui.ide.markerType="114" org.eclipse.ui.ide.pathField="144" org.eclipse.ui.ide.resourceField="114" org.eclipse.ui.ide.severityAndDescriptionField="633"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -418,8 +418,26 @@
 <item historyLabel="Breakout.java" index="0">
 <position info="not_deleted" x="1698" y="0"/>
 </item>
-<item active="true" historyLabel="Breakout.java" index="0">
+<item historyLabel="Breakout.java" index="0">
 <position info="not_deleted" x="6009" y="0"/>
+</item>
+<item historyLabel="Breakout.java" index="0">
+<position info="not_deleted" x="6012" y="0"/>
+</item>
+<item historyLabel="Breakout.java" index="0">
+<position/>
+</item>
+<item historyLabel="Breakout.java" index="0">
+<position/>
+</item>
+<item historyLabel="Breakout.java" index="0">
+<position/>
+</item>
+<item historyLabel="Breakout.java" index="0">
+<position info="not_deleted" x="7509" y="0"/>
+</item>
+<item active="true" historyLabel="Breakout.java" index="0">
+<position info="not_deleted" x="1141" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
