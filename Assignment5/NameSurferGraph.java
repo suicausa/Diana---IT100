@@ -4,6 +4,8 @@
  * This class represents the canvas on which the graph of
  * names is drawn. This class is responsible for updating
  * (redrawing) the graphs whenever the list of entries changes or the window is resized.
+ * 
+ * Received help: https://github.com/NatashaTheRobot/Stanford-CS-106A/blob/master/Assignment6/NameSurferGraph.java
  */
 
 import acm.graphics.*;
@@ -14,41 +16,31 @@ import java.awt.*;
 public class NameSurferGraph extends GCanvas
 	implements NameSurferConstants, ComponentListener {
 
-	/* Implementation of the ComponentListener interface */
-	public void componentHidden(ComponentEvent e) { }
-	public void componentMoved(ComponentEvent e) { }
-	public void componentResized(ComponentEvent e) { update(); }
-	public void componentShown(ComponentEvent e) { }
-	
-	/* Private instance variables */
-	private ArrayList <NameSurferEntry> entriesDisplayed;
-	
 	/**
 	* Creates a new NameSurferGraph object that displays the data.
 	*/
+	private ArrayList <NameSurferEntry> displayEntry;
+	
 	public NameSurferGraph() {
 		addComponentListener(this);
-		entriesDisplayed = new ArrayList<NameSurferEntry>();
+		displayEntry = new ArrayList<NameSurferEntry>();
 	}
 	
 	/**
 	* Clears the list of name surfer entries stored inside this class.
 	*/
 	public void clear() {
-		entriesDisplayed.clear();
+		displayEntry.clear();
 	}
 	
-	/* Method: addEntry(entry) */
 	/**
 	* Adds a new NameSurferEntry to the list of entries on the display.
 	* Note that this method does not actually draw the graph, but
 	* simply stores the entry; the graph is drawn by calling update.
 	*/
 	public void addEntry(NameSurferEntry entry) {
-		entriesDisplayed.add(entry);
+		displayEntry.add(entry);
 	}
-	
-	
 	
 	/**
 	* Updates the display image by deleting all the graphical objects
@@ -60,83 +52,88 @@ public class NameSurferGraph extends GCanvas
 	public void update() {
 		removeAll();
 		drawGraph();
-		if(entriesDisplayed.size() >= 0) {
-			for(int i = 0; i < entriesDisplayed.size(); i++) {
-				NameSurferEntry entries = entriesDisplayed.get(i); 
-				drawEntry(entries, i);
+		if(displayEntry.size() >= 0) {
+			for(int i = 0; i < displayEntry.size(); i++) {
+				NameSurferEntry entries = displayEntry.get(i); 
+				graphEntry(entries, i);
 			}
 		}
 	}
+
+	/* Implementation of the ComponentListener interface */
+	public void componentHidden(ComponentEvent e) { }
+	public void componentMoved(ComponentEvent e) { }
+	public void componentResized(ComponentEvent e) { update(); }
+	public void componentShown(ComponentEvent e) { }
 	
 	private void drawGraph() {
-		drawVerticalLines();
-		drawHorizontalLines();
-		drawDecades(); 
+		gridLine();//draws vertical lines for the grid
+		borderLine();
+		dateLabel();//adds the years
 	}
 	
-	//draws the vertical lines in the graph
-	private void drawVerticalLines() {
+	private void gridLine() {
 		for(int i = 0; i<NDECADES; i++) {
-			double y1 = 0;
-			double y2 = getHeight();
+			double startY = 0;
+			double lastY = getHeight();
 			double x = i * (getWidth()/NDECADES);
-			GLine line = new GLine(x, y1, x, y2);
+			GLine line = new GLine(x, startY, x, lastY);
 			add(line);
 		}
 	}
 	
-	//draws the horizontal lines in the graph
-	private void drawHorizontalLines() {
-		double x1 = 0;
-		double x2 = getWidth();
-		double yLine1 = getHeight() - GRAPH_MARGIN_SIZE;
-		GLine line1 = new GLine(x1, yLine1, x2, yLine1);
-		add(line1);
-		double yLine2 = GRAPH_MARGIN_SIZE;
-		GLine line2 = new GLine(x1, yLine2, x2, yLine2);
-		add(line2);
+	private void borderLine() {
+		double startX = 0;
+		double lastX = getWidth();
+		double topY = getHeight() - GRAPH_MARGIN_SIZE;
+		GLine topLine = new GLine(startX, topY, lastX, topY);
+		add(topLine);
+		
+		double bottomY = GRAPH_MARGIN_SIZE;
+		GLine bottomLine = new GLine(startX, bottomY, lastX, bottomY);
+		add(bottomLine);
 	}
 	
-	//draws the decade markers
-	private void drawDecades() {
+	private void dateLabel() {
 		for(int i = 0; i<NDECADES; i++) {
-			int decade = START_DECADE;
-			decade += 10*i;
-			String label = Integer.toString(decade);
+			int dateYear = START_DECADE;
+			dateYear += 10*i;
+			String label = Integer.toString(dateYear);
 			double y = getHeight() - GRAPH_MARGIN_SIZE/4;
 			double x = 2 + i * (getWidth()/NDECADES);
-			GLabel displayedDecade = new GLabel(label, x, y);
-			add(displayedDecade);
+			GLabel dateLabel = new GLabel(label, x, y);
+			add(dateLabel);
 		}
 	}
 	
-	//draws the graph line with the name and rank # labels
-	private void drawEntry(NameSurferEntry entry, int entryNumber) {
-		//draws the graph line
+	private void graphEntry(NameSurferEntry entry, int entryNumber) {
+		
 		for(int i = 0; i < NDECADES - 1; i++) {
-			int ranking1 = entry.getRank(i);
-			int ranking2 = entry.getRank(i+1);
-			double x1 = i * (getWidth()/NDECADES);
-			double x2 = (i+1) * (getWidth()/NDECADES);
-			double y1 = 0;
-			double y2 = 0;
-			if(ranking1 != 0 && ranking2 != 0) {
-				y1 = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE*2) * ranking1/MAX_RANK;
-				y2 = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE*2) * ranking2/MAX_RANK;
+			int plotStart = entry.getRank(i);
+			int plotEnd = entry.getRank(i+1);
+			double startX = i*(getWidth()/NDECADES);
+			double lastX = (i+1)*(getWidth()/NDECADES);
+			double startY = 0;//starting point of each plot is at baseline
+			double lastY = 0;
+			if(plotStart != 0 && plotEnd != 0) {
+				startY = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE*2) * plotStart/MAX_RANK;
+				lastY = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE*2) * plotEnd/MAX_RANK;
 			}
-			else if(ranking1 == 0 && ranking2 == 0) {
-				y1 = getHeight() - GRAPH_MARGIN_SIZE;
-				y2 = getHeight() - GRAPH_MARGIN_SIZE;
+			else if(plotStart == 0 && plotEnd == 0) {
+				startY = getHeight() - GRAPH_MARGIN_SIZE;
+				lastY = getHeight() - GRAPH_MARGIN_SIZE;
 			}
-			else if (ranking1 == 0){
-				y1 = getHeight() - GRAPH_MARGIN_SIZE;
-				y2 = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE*2) * ranking2/MAX_RANK;
+			else if (plotStart == 0){
+				startY = getHeight() - GRAPH_MARGIN_SIZE;
+				lastY = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE*2) * plotEnd/MAX_RANK;
 			}
-			else if(ranking2 == 0) {
-				y1 = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE*2) * ranking1/MAX_RANK;
-				y2 = getHeight() - GRAPH_MARGIN_SIZE;
+			else if(plotEnd == 0) {
+				startY = GRAPH_MARGIN_SIZE + (getHeight() - GRAPH_MARGIN_SIZE*2) * plotStart/MAX_RANK;
+				lastY = getHeight() - GRAPH_MARGIN_SIZE;
 			}
-			GLine line = new GLine(x1, y1, x2, y2);
+			GLine line = new GLine(startX, startY, lastX, lastY);
+			
+			//order of colors
 			if(entryNumber%4 == 1) {
 				line.setColor(Color.RED);
 			}
@@ -148,7 +145,7 @@ public class NameSurferGraph extends GCanvas
 			}
 			add(line);
 		}
-		//adds in the label with the Name and Rank number
+		
 		for(int i = 0; i<NDECADES; i++) {
 			String name = entry.getName();
 			int rank = entry.getRank(i);

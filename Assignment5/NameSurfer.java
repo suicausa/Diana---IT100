@@ -29,7 +29,7 @@ public class NameSurfer extends Program implements NameSurferConstants {
  */
 	public void init() {
 		
-		//Set up initial display with interactors and canvas
+		//assembly the GUI interactors
 		label = new JLabel("Name ");
 		add(label, SOUTH);
 		

@@ -16,12 +16,11 @@ import java.util.*;
  * name and get back the corresponding NameSurferEntry.
  * Names are matched independent of case, so that "Eric"
  * and "ERIC" are the same names.
+ * 
+ * Received help: https://github.com/NatashaTheRobot/Stanford-CS-106A/blob/master/Assignment6/NameSurferDataBase.java
  */
 
-public class NameSurferDataBase implements NameSurferConstants {
-	
-	/* Private instance variables */
-	private Map <String, NameSurferEntry> namesdb = new HashMap <String, NameSurferEntry>(); 
+public class NameSurferDataBase implements NameSurferConstants { 
 	
 /* Constructor: NameSurferDataBase(filename) */
 /**
@@ -34,20 +33,22 @@ public class NameSurferDataBase implements NameSurferConstants {
 		getNameData(filename);
 	}
 	
+	private HashMap <String, NameSurferEntry> namesHistory = new HashMap <String, NameSurferEntry>();
 	private void getNameData(String filename) {
-		try{
-			BufferedReader rd = new BufferedReader(new FileReader(filename));
+		try {
+			BufferedReader getName = new BufferedReader(new FileReader(filename));
 			while(true) {
-				String line = rd.readLine();
-				if(line == null) break;
-				NameSurferEntry nameEntry = new NameSurferEntry(line);
-				namesdb.put(nameEntry.getName(), nameEntry);
+				String singleName = getName.readLine();
+				if(singleName == null) break;
+				NameSurferEntry enterName = new NameSurferEntry(singleName);
+				namesHistory.put(enterName.getName(), enterName);
 			}
-			rd.close();
-		} catch(IOException ex) {
-				throw new ErrorException(ex);
-			}
+			getName.close();
 		}
+		catch(IOException ex) {
+			throw new ErrorException(ex);
+		}
+	}
 	
 /* Method: findEntry(name) */
 /**
@@ -56,18 +57,25 @@ public class NameSurferDataBase implements NameSurferConstants {
  * method returns null.
  */
 	public NameSurferEntry findEntry(String name) {
-		char ch = name.charAt(0);
-		if(Character.isLowerCase(ch) == true) {
-			ch = Character.toUpperCase(ch);
+		/* 
+		 * translates user input name to format of names in database:
+		 * all lowercase except capital first letter
+		 */
+		char firstLetter = name.charAt(0);
+		if (Character.isLowerCase(firstLetter) == true) {
+			firstLetter = Character.toUpperCase(firstLetter);
 		}
-		String otherLetters = name.substring(1);
-		otherLetters = otherLetters.toLowerCase();
-		name = ch + otherLetters;
-		if(namesdb.containsKey(name)) {
-			return namesdb.get(name);
+		String allLetters = name.substring(1);
+		allLetters = allLetters.toLowerCase();
+		name = firstLetter + allLetters;
+		/*
+		 * search database for matching name
+		 */
+		if (namesHistory.containsKey(name)) {
+			return namesHistory.get(name); //name matched
 		}
-		else{
-			return null;
+		else {
+			return null; //name not found
 		}
 	}
 	
